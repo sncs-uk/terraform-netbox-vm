@@ -3,6 +3,24 @@
  *
  * This terraform module creates a vm record within a given Netbox instance
  *
+ *
+ * ## Usage
+ *
+ * ```
+ * module netboxvm {
+ *   source                          = "https://github.com/sncs-uk/terraform-netbox-vm"
+ *   hostname                        = "my-vm"
+ *   vCPUs                           = 2
+ *   memory                          = 2048
+ *   cluster_name                    = "VM Cluster 1"
+ *   disk_size                       = 2
+ *   additional_disks                = [
+ *     {
+ *       label       = "Data disk"
+ *       size        = 100
+ *     }
+ *   ]
+ * }
  */
 
 terraform {
