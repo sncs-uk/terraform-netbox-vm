@@ -17,7 +17,7 @@ variable memory {
 
 variable cluster_name {
   type        = string
-  description = "The vSphere Cluster on which the VM will be created."
+  description = "The Cluster on which the VM will be located."
 }
 
 variable disk_size {
