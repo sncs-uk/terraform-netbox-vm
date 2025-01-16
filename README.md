@@ -57,6 +57,7 @@ No modules.
 | <a name="input_disk_size"></a> [disk\_size](#input\_disk\_size) | The size of the OS disk in GB. Must be a whole number. | `number` | `null` | no |
 | <a name="input_hostname"></a> [hostname](#input\_hostname) | The hostname for the VM (doubles as the VM name). | `string` | n/a | yes |
 | <a name="input_memory"></a> [memory](#input\_memory) | The amount of memory in MB to assign to the VM. | `number` | `2048` | no |
+| <a name="input_site_id"></a> [site\_id](#input\_site\_id) | Site ID in which to put the VM | `number` | `null` | no |
 | <a name="input_vCPUs"></a> [vCPUs](#input\_vCPUs) | The number of vCPUs to assign to the VM. | `number` | `2` | no |
 
 ## Outputs

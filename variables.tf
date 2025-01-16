@@ -36,3 +36,9 @@ variable additional_disks {
   description = "List of additional disks to add to the VM."
   default     = []
 }
+
+variable site_id {
+  description = "Site ID in which to put the VM"
+  type        = number
+  default     = null
+}

@@ -39,6 +39,7 @@ data netbox_cluster cluster {
 resource netbox_virtual_machine vm {
   name              = var.hostname
   cluster_id        = data.netbox_cluster.cluster.id
+  site_id           = var.site_id
   status            = "active"
   vcpus             = var.vCPUs
   memory_mb         = var.memory
