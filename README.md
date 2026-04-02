@@ -65,6 +65,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_interface"></a> [interface](#output\_interface) | The `netbox_interface` object created |
+| <a name="output_interfaces"></a> [interfaces](#output\_interfaces) | List of the `netbox_interface` objects created |
 | <a name="output_vm"></a> [vm](#output\_vm) | The `netbox_virtual_machine` object created |
 <!-- END_TF_DOCS -->
