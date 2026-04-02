@@ -1,44 +1,50 @@
-variable hostname {
+variable "hostname" {
   type        = string
   description = "The hostname for the VM (doubles as the VM name)."
 }
 
-variable vCPUs {
+variable "vCPUs" {
   type        = number
   description = "The number of vCPUs to assign to the VM."
   default     = 2
 }
 
-variable memory {
+variable "memory" {
   type        = number
   description = "The amount of memory in MB to assign to the VM."
   default     = 2048
 }
 
-variable cluster_name {
+variable "cluster_name" {
   type        = string
   description = "The Cluster on which the VM will be located."
 }
 
-variable disk_size {
+variable "disk_size" {
   type        = number
   description = "The size of the OS disk in GB. Must be a whole number."
   default     = null
 }
 
-variable additional_disks {
-  type        = list(object({
-    label             = string
-    size              = number
-    thin_provisioned  = optional(bool, true)
-    eagerly_scrub     = optional(bool, false)
+variable "additional_disks" {
+  type = list(object({
+    label            = string
+    size             = number
+    thin_provisioned = optional(bool, true)
+    eagerly_scrub    = optional(bool, false)
   }))
   description = "List of additional disks to add to the VM."
   default     = []
 }
 
-variable site_id {
+variable "site_id" {
   description = "Site ID in which to put the VM"
   type        = number
   default     = null
+}
+
+variable "network_interfaces" {
+  description = "List of network interfaces that should be created as part of this VM"
+  type        = list(string)
+  default     = ["ens192"] # For backward compatability
 }

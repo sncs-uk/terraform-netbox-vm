@@ -42,7 +42,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [netbox_interface.ens192](https://registry.terraform.io/providers/e-breuninger/netbox/latest/docs/resources/interface) | resource |
+| [netbox_interface.interface](https://registry.terraform.io/providers/e-breuninger/netbox/latest/docs/resources/interface) | resource |
 | [netbox_virtual_disk.additional_disks](https://registry.terraform.io/providers/e-breuninger/netbox/latest/docs/resources/virtual_disk) | resource |
 | [netbox_virtual_disk.disk](https://registry.terraform.io/providers/e-breuninger/netbox/latest/docs/resources/virtual_disk) | resource |
 | [netbox_virtual_machine.vm](https://registry.terraform.io/providers/e-breuninger/netbox/latest/docs/resources/virtual_machine) | resource |
@@ -52,11 +52,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_additional_disks"></a> [additional\_disks](#input\_additional\_disks) | List of additional disks to add to the VM. | <pre>list(object({<br/>    label             = string<br/>    size              = number<br/>    thin_provisioned  = optional(bool, true)<br/>    eagerly_scrub     = optional(bool, false)<br/>  }))</pre> | `[]` | no |
+| <a name="input_additional_disks"></a> [additional\_disks](#input\_additional\_disks) | List of additional disks to add to the VM. | <pre>list(object({<br/>    label            = string<br/>    size             = number<br/>    thin_provisioned = optional(bool, true)<br/>    eagerly_scrub    = optional(bool, false)<br/>  }))</pre> | `[]` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | The Cluster on which the VM will be located. | `string` | n/a | yes |
 | <a name="input_disk_size"></a> [disk\_size](#input\_disk\_size) | The size of the OS disk in GB. Must be a whole number. | `number` | `null` | no |
 | <a name="input_hostname"></a> [hostname](#input\_hostname) | The hostname for the VM (doubles as the VM name). | `string` | n/a | yes |
 | <a name="input_memory"></a> [memory](#input\_memory) | The amount of memory in MB to assign to the VM. | `number` | `2048` | no |
+| <a name="input_network_interfaces"></a> [network\_interfaces](#input\_network\_interfaces) | List of network interfaces that should be created as part of this VM | `list(string)` | <pre>[<br/>  "ens192"<br/>]</pre> | no |
 | <a name="input_site_id"></a> [site\_id](#input\_site\_id) | Site ID in which to put the VM | `number` | `null` | no |
 | <a name="input_vCPUs"></a> [vCPUs](#input\_vCPUs) | The number of vCPUs to assign to the VM. | `number` | `2` | no |
 

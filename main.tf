@@ -32,36 +32,37 @@ terraform {
   }
 }
 
-data netbox_cluster cluster {
-  name    = var.cluster_name
+data "netbox_cluster" "cluster" {
+  name = var.cluster_name
 }
 
-resource netbox_virtual_machine vm {
-  name              = var.hostname
-  cluster_id        = data.netbox_cluster.cluster.id
-  site_id           = var.site_id
-  status            = "active"
-  vcpus             = var.vCPUs
-  memory_mb         = var.memory
+resource "netbox_virtual_machine" "vm" {
+  name       = var.hostname
+  cluster_id = data.netbox_cluster.cluster.id
+  site_id    = var.site_id
+  status     = "active"
+  vcpus      = var.vCPUs
+  memory_mb  = var.memory
 }
 
-resource netbox_virtual_disk disk {
-  name                = "Disk 1"
-  description         = "OS Disk"
-  size_mb             = var.disk_size * 1000
-  virtual_machine_id  = netbox_virtual_machine.vm.id
+resource "netbox_virtual_disk" "disk" {
+  name               = "Disk 1"
+  description        = "OS Disk"
+  size_mb            = var.disk_size * 1000
+  virtual_machine_id = netbox_virtual_machine.vm.id
 }
 
-resource netbox_virtual_disk additional_disks {
-  for_each            = { for disk in var.additional_disks : disk.label => disk }
+resource "netbox_virtual_disk" "additional_disks" {
+  for_each = { for disk in var.additional_disks : disk.label => disk }
 
-  name                = "Disk ${index(var.additional_disks, each.value) + 2}"
-  description         = each.value.label
-  size_mb             = each.value.size * 1000
-  virtual_machine_id  = netbox_virtual_machine.vm.id
+  name               = "Disk ${index(var.additional_disks, each.value) + 2}"
+  description        = each.value.label
+  size_mb            = each.value.size * 1000
+  virtual_machine_id = netbox_virtual_machine.vm.id
 }
 
-resource netbox_interface ens192 {
-  name                = "ens192"
-  virtual_machine_id  = netbox_virtual_machine.vm.id
+resource "netbox_interface" "interface" {
+  for_each           = { for interface in var.network_interfaces : interface => interface }
+  name               = each.value
+  virtual_machine_id = netbox_virtual_machine.vm.id
 }
