@@ -4,6 +4,6 @@ output "vm" {
 }
 
 output "interfaces" {
-  value       = netbox_interface.interface
+  value       = [ for interface in netbox_interface.interface : interface ]
   description = "List of the `netbox_interface` objects created"
 }
